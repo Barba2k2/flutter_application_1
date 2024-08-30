@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_vlc_player/flutter_vlc_player.dart';
 
@@ -37,12 +39,16 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    _videoPlayerController = VlcPlayerController.network(
-      'https://media.w3.org/2010/05/sintel/trailer.mp4',
-      hwAcc: HwAcc.full,
-      autoPlay: false,
-      options: VlcPlayerOptions(),
-    );
+    try {
+      _videoPlayerController = VlcPlayerController.network(
+        'http://list.serveftp.net:8880/movie/fullip/adgptww/2852058.mkv',
+        hwAcc: HwAcc.full,
+        autoPlay: true,
+        options: VlcPlayerOptions(),
+      );
+    } catch (e, s) {
+      log('Error on video player: $e, $s');
+    }
   }
 
   @override
